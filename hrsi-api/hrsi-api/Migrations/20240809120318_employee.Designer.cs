@@ -12,8 +12,8 @@ using hrsi_api.Data;
 namespace hrsi_api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240809093552_initial migration")]
-    partial class initialmigration
+    [Migration("20240809120318_employee")]
+    partial class employee
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,7 +49,7 @@ namespace hrsi_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MyProperty");
+                    b.ToTable("employee");
                 });
 #pragma warning restore 612, 618
         }

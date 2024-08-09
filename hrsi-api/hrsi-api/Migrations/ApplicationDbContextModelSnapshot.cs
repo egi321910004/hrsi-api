@@ -46,7 +46,7 @@ namespace hrsi_api.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("MyProperty");
+                    b.ToTable("employee");
                 });
 #pragma warning restore 612, 618
         }
