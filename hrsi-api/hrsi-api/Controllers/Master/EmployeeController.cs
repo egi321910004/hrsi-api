@@ -49,6 +49,7 @@ namespace hrsi_api.Controllers.Master
 
             var employeeData = new Employee()
             {
+                PositionId = addEmployeeDto.PositionId,
                 Name = addEmployeeDto.Name,
                 Email = addEmployeeDto.Email,
                 Phone = addEmployeeDto.Phone,
@@ -73,6 +74,7 @@ namespace hrsi_api.Controllers.Master
                 return NotFound();
             }
 
+            employee.PositionId = updateEmployeeDTO.PositionId;
             employee.Name = updateEmployeeDTO.Name;
             employee.Email = updateEmployeeDTO.Email;
             employee.Phone = updateEmployeeDTO.Phone;
