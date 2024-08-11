@@ -8,5 +8,7 @@
         public required string division { get; set; }
         public required string department { get; set; }
         public required string status { get; set; }
+
+        public required ICollection<Employee> Employees { get; set; }
     }
 }
