@@ -9,5 +9,6 @@ namespace hrsi_api.Data
         {
         }
         public DbSet<Employee> employee { get; set; }
+        public DbSet<Position> position { get; set; }
     }
 }
