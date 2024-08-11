@@ -60,5 +60,27 @@ namespace hrsi_api.Controllers.Master
 
             return Ok(employeeData);
         }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+
+        public IActionResult UpdateEmployee(Guid id, updateEmployeeDTO updateEmployeeDTO)
+        {
+            var employee = dbContext.employee.Find(id);
+
+            if(employee == null)
+            {
+                return NotFound();
+            }
+
+            employee.Name = updateEmployeeDTO.Name;
+            employee.Email = updateEmployeeDTO.Email;
+            employee.Phone = updateEmployeeDTO.Phone;
+            employee.status = updateEmployeeDTO.status;
+
+            dbContext.SaveChanges();
+
+            return Ok(employee);
+        }
     }
 }
