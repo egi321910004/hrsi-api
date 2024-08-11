@@ -7,7 +7,7 @@ using System;
 
 namespace hrsi_api.Controllers.Master
 {
-    [Route("api/[controller]")]
+    [Route("api/master/[controller]")]
     public class EmployeeController : Controller
     {
         private readonly ApplicationDbContext dbContext;
