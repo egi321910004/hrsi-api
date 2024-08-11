@@ -1,12 +1,24 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using hrsi_api.Data;
+using Microsoft.AspNetCore.Mvc;
 
 namespace hrsi_api.Controllers.Master
 {
+    [Route("api/master/[controller]")]
     public class PositionController : Controller
     {
-        public IActionResult Index()
+        private readonly ApplicationDbContext dbContext;
+
+        public PositionController(ApplicationDbContext dbContext)
         {
-            return View();
+            this.dbContext = dbContext;
+        }
+
+        [HttpGet]
+        public IActionResult GetAllPosition()
+        {
+            var allPosition = dbContext.position.ToList();
+
+            return Ok(allPosition);
         }
     }
 }
