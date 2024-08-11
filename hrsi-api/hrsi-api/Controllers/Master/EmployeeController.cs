@@ -3,6 +3,7 @@ using hrsi_api.DTO;
 using hrsi_api.Migrations;
 using hrsi_api.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace hrsi_api.Controllers.Master
 {
@@ -21,6 +22,21 @@ namespace hrsi_api.Controllers.Master
             var allEmployee = dbContext.employee.ToList();
 
             return Ok(allEmployee);
+        }
+
+        [HttpGet]
+        [Route("{id:guid}")]
+
+        public IActionResult GetEmployeeByID(Guid id) 
+        {
+            var response = dbContext.employee.Find(id);
+
+            if(response == null)
+            {
+                return NotFound(response);
+            }
+
+            return Ok(response);
         }
 
         [HttpPost]
