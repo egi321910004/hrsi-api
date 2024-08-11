@@ -82,5 +82,23 @@ namespace hrsi_api.Controllers.Master
 
             return Ok(employee);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+
+        public IActionResult DeleteEmployee(Guid id)
+        {
+            var employee = dbContext.employee.Find(id);
+
+            if(employee == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.employee.Remove(employee);
+            dbContext.SaveChanges();
+
+            return Ok(employee);
+        }
     }
 }
