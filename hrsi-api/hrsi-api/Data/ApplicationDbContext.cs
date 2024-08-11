@@ -8,7 +8,9 @@ namespace hrsi_api.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        public DbSet<Employee> employee { get; set; }
-        public DbSet<Position> position { get; set; }
+
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<Position> Positions { get; set; }
+
     }
 }
