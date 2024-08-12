@@ -3,6 +3,7 @@ using hrsi_api.DTO;
 using hrsi_api.Migrations;
 using hrsi_api.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 
 namespace hrsi_api.Controllers.Master
@@ -22,6 +23,30 @@ namespace hrsi_api.Controllers.Master
             var allEmployee = dbContext.employee.ToList();
 
             return Ok(allEmployee);
+        }
+
+        [HttpGet("details")]
+        public IActionResult GetDetailEmployee()
+        {
+            var employeeDetails = dbContext.employee;
+            var positionDetails = dbContext.position;
+
+            var detail = from s in employeeDetails
+                         join c in positionDetails
+                         on s.PositionId equals c.Id
+                         select new
+                         {
+                             EmployeeName = s.Name,
+                             EmployeeEmail = s.Email,
+                             EmployeePhone = s.Phone,
+                             EmployeePosition = c.name_position,
+                             EmployeeDiv = c.division,
+                             EmployeeDep = c.department,
+                             EmployeeSal = c.salary,
+                             EmployeeStatus = s.status
+                         };
+
+            return Ok(detail);
         }
 
         [HttpGet]
