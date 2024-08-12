@@ -49,6 +49,38 @@ namespace hrsi_api.Controllers.Master
             return Ok(detail);
         }
 
+        [HttpGet("details/{id:guid}")]
+        public IActionResult GetDetailEmployeeById(Guid id)
+        {
+            var employeeDetails = dbContext.employee;
+            var positionDetails = dbContext.position;
+
+            var detail = from s in employeeDetails
+                         join c in positionDetails
+                         on s.PositionId equals c.Id
+                         where s.Id == id
+                         select new
+                         {
+                             EmployeeName = s.Name,
+                             EmployeeEmail = s.Email,
+                             EmployeePhone = s.Phone,
+                             EmployeePosition = c.name_position,
+                             EmployeeDiv = c.division,
+                             EmployeeDep = c.department,
+                             EmployeeSal = c.salary,
+                             EmployeeStatus = s.status
+                         };
+
+            var result = detail.SingleOrDefault();
+
+            if (result == null)
+            {
+                return NotFound(); 
+            }
+
+            return Ok(result);
+        }
+
         [HttpGet]
         [Route("{id:guid}")]
 
