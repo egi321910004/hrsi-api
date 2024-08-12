@@ -1,5 +1,6 @@
 ﻿using hrsi_api.Data;
 using hrsi_api.DTO;
+using hrsi_api.Migrations;
 using hrsi_api.Models.Entities;
 using Microsoft.AspNetCore.Mvc;
 
@@ -48,6 +49,34 @@ namespace hrsi_api.Controllers.Master
             dbContext.SaveChanges();
 
             return Ok(positionData);
+        }
+
+        [HttpPut]
+        [Route("{id:guid}")]
+
+        public IActionResult UpdatePosition(Guid id ,updatePositionDTO updatePositionDTO)
+        {
+            var Position = dbContext.position.Find(id);
+
+            if(Position == null)
+            {
+                return NotFound();
+            }
+
+            if(updatePositionDTO == null)
+            {
+                return BadRequest();
+            }
+
+            Position.name_position = updatePositionDTO.name_position;
+            Position.division = updatePositionDTO.division;
+            Position.department = updatePositionDTO.department;
+            Position.salary = updatePositionDTO.salary;
+            Position.status = updatePositionDTO.status;
+
+            dbContext.SaveChanges();
+
+            return Ok(Position);
         }
     }
 }
