@@ -78,5 +78,23 @@ namespace hrsi_api.Controllers.Master
 
             return Ok(Position);
         }
+
+        [HttpDelete]
+        [Route("{id:guid}")]
+
+        public IActionResult DeletePosition(Guid id)
+        {
+            var Position = dbContext.position.Find(id);
+
+            if (Position == null)
+            {
+                return NotFound();
+            }
+
+            dbContext.position.Remove(Position);
+            dbContext.SaveChanges();
+
+            return Ok(Position);
+        }
     }
 }
