@@ -1,11 +1,21 @@
-<h1 align="center" style="font-weight: bold;">This is a mini Human Resource Information System (HRIS) project built using C# and LINQ. It allows users to manage and view employee details along with their associated position information.</h1>
+<h1 align="center" style="font-weight: bold;">Mini Human Resource Information System</h1>
+
+## Overview
+
+This is a mini Human Resource Information System (HRIS) project built using C# and LINQ. It allows users to manage and view employee details along with their associated position information.
+
+## Features
+
+- Retrieve all employee details.
+- Retrieve details of a specific employee by ID.
+
 
 <h2 id="technologies">💻 Technologies</h2>
 
-- .NET Core 8
+- C#
 - LINQ
-- SQL Server
-- Swagger
+- ASP.NET Core (for Web API)
+- Entity Framework Core (if used for data access)
 
 # Employee API Spec
 
@@ -21,6 +31,6 @@ Request Body :
   "name": "string",
   "email": "string",
   "phone": "string",
-  "status": "string
+  "status": "string"
 }
 ```
